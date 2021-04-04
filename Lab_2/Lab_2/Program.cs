@@ -7,6 +7,7 @@ namespace Lab_2
         static void Main(string[] args)
         {
             BBST tree = new BBST(6, 3, 9, 4, 7, 2, 1, 10, 11);
+            tree.printPreorder();
         }
     }
 }

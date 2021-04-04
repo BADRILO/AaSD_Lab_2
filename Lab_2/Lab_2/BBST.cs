@@ -60,5 +60,21 @@ namespace Lab_2
                 addNode_rec(root, data);
             }
         }
+        public void printPreorder()
+        {
+            static void rec(TreeNode node)
+            {
+                if (node == null) return;
+
+                Console.WriteLine($"{node.data}  ");
+                rec(node.left);
+                rec(node.right);
+            }
+            if (this.IsEmpty())
+            {
+                Console.WriteLine("Tree is empty!!!");
+            }
+            else rec(root);
+        }
     }
 }
