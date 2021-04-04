@@ -6,7 +6,7 @@ namespace Lab_2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BBST tree = new BBST(6, 3, 9, 4, 7, 2, 1, 10, 11);
         }
     }
 }
