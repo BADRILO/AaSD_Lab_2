@@ -23,29 +23,29 @@ namespace Lab_2
 
         public int add(int data) //добавление нового узла
         {
-            if (data < this.data)
+            if (data < this.data) //входим в левое поддерево
             {
                 if (this.left == null) //добавление нового узла как листочка
                 {
                     this.left = new TreeNode(data);
                     return this.getHeight();
                 }
-                else
+                else  //движемся рекурсивно дальше по дереву
                 {
-                    int left_H  = this.left.add(data);
+                    int left_H  = this.left.add(data); 
                     int right_H = this.right.getHeight();
 
                     return this.checkBalance(left_H, right_H);
                 }
             }
-            else
+            else //входим в правое поддерево
             {
-                if (this.right == null)
+                if (this.right == null)  //добавление нового узла как листочка
                 {
                     this.right = new TreeNode(data);
                     return this.getHeight();
                 }
-                else
+                else  //движемся рекурсивно дальше по дереву
                 {
                     int right_H = this.right.add(data);
                     int left_H  = this.left.getHeight();
@@ -53,48 +53,6 @@ namespace Lab_2
                     return this.checkBalance(left_H, right_H);
                 }
             }
-        }
-
-        public int checkBalance(int left_H, int right_H)
-        {
-            int differ = Math.Abs(left_H - right_H);
-
-
-            Console.WriteLine($"Data of node: {this.data}");
-            Console.WriteLine($"Balance Factor: {differ}");
-            Console.WriteLine($"Left subtree: {left_H}");
-            Console.WriteLine($"Right subtree: {right_H}\n");
-
-
-            if (differ > 1)
-            {
-                Console.WriteLine("Tree is unbalanced!!!");
-                return this.rebalance(left_H, right_H);
-            }
-            return Math.Max(left_H, right_H) + 1;
-        }
-        public int rebalance(int left_H, int right_H)
-        {
-            //малое левое вращение
-            if (left_H < right_H && this.right.left.getHeight() <= this.right.right.getHeight())
-            {
-                int this_data = this.data;
-                TreeNode this_l = this.left;
-                TreeNode this_r_l = this.right.left;
-                TreeNode this_r_r = this.right.right;
-
-                this.data = this.right.data;
-                this.right.data = this_data;
-
-                this.left = this.right;
-                this.right = this_r_r;
-                this.left.left = this_l;
-                this.left.right = this_r_l;
-
-                return Math.Max(left_H, right_H);
-            }
-            else
-                return 0;
         }
 
         public int getHeight()
@@ -121,5 +79,75 @@ namespace Lab_2
             this.left?.printPreorder();
             this.right?.printPreorder();
         }
+
+        private int checkBalance(int left_H, int right_H)
+        {
+            int differ = Math.Abs(left_H - right_H);
+
+
+            //Console.WriteLine($"Data of node: {this.data}");
+            //Console.WriteLine($"Balance Factor: {differ}");
+            //Console.WriteLine($"Left subtree: {left_H}");
+            //Console.WriteLine($"Right subtree: {right_H}\n");
+
+
+            if (differ > 1)
+            {
+                Console.WriteLine("Tree is unbalanced!!!\n\n");
+                return this.rebalance(left_H, right_H);
+            }
+            return Math.Max(left_H, right_H) + 1;
+        }
+        private int rebalance(int left_H, int right_H)
+        {
+            //малое левое вращение
+            if      (left_H < right_H && this.right.left.getHeight() <= this.right.right.getHeight())
+            {
+                this.left_rotation(); 
+
+            }
+            //малое правое вращение
+            else if (left_H > right_H && this.left.left.getHeight()  >= this.left.right.getHeight())
+            {
+                this.right_rotation();
+            }
+
+            return Math.Max(left_H, right_H);
+        }
+
+        private void left_rotation()
+        {
+            Console.WriteLine("Used left rotation\n\n");
+            int this_data = this.data;
+            TreeNode this_l = this.left;
+            TreeNode this_r_l = this.right.left;
+            TreeNode this_r_r = this.right.right;
+
+            this.data = this.right.data;
+            this.right.data = this_data;
+
+            this.left = this.right;
+            this.right = this_r_r;
+            this.left.left = this_l;
+            this.left.right = this_r_l;
+        }
+
+        private void right_rotation()
+        {
+            Console.WriteLine("Used right rotation\n\n");
+            int this_data = this.data;
+            TreeNode this_r = this.right;
+            TreeNode this_l_l = this.left.left;
+            TreeNode this_l_r = this.left.right;
+
+            this.data = this.left.data;
+            this.left.data = this_data;
+
+            this.right = this.left;
+            this.left = this_l_l;
+            this.right.left = this_l_r;
+            this.right.right = this_r;
+        }
+        
     }
 }
