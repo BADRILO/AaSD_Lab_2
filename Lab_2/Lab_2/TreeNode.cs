@@ -104,7 +104,6 @@ namespace Lab_2
             if      (left_H < right_H && this.right.left.getHeight() <= this.right.right.getHeight())
             {
                 this.left_rotation(); 
-
             }
             //большое левое вращение
             else if (left_H < right_H && this.right.left.getHeight() >  this.right.right.getHeight())
@@ -115,6 +114,11 @@ namespace Lab_2
             else if (left_H > right_H && this.left.left.getHeight()  >= this.left.right.getHeight())
             {
                 this.right_rotation();
+            }
+            //большое правое вращение
+            else if (left_H > right_H && this.left.left.getHeight() < this.left.right.getHeight())
+            {
+                this.left_right_rotation();
             }
 
             return Math.Max(left_H, right_H);
