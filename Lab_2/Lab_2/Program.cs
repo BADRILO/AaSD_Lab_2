@@ -11,12 +11,7 @@ namespace Lab_2
             tree.add(24);
             tree.add(20);
             tree.add(30);
-            tree.add(26);
-            tree.add(17);
             tree.add(22);
-            tree.add(5);
-            tree.add(9);
-            tree.add(12);
             //tree.add();
             tree.printPreorder();
         }

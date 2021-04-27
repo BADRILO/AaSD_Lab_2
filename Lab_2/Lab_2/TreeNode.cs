@@ -106,6 +106,11 @@ namespace Lab_2
                 this.left_rotation(); 
 
             }
+            //большое левое вращение
+            else if (left_H < right_H && this.right.left.getHeight() >  this.right.right.getHeight())
+            {
+                this.right_left_rotation();
+            }
             //малое правое вращение
             else if (left_H > right_H && this.left.left.getHeight()  >= this.left.right.getHeight())
             {
@@ -147,6 +152,20 @@ namespace Lab_2
             this.left = this_l_l;
             this.right.left = this_l_r;
             this.right.right = this_r;
+        }
+
+        private void left_right_rotation()
+        {
+            Console.WriteLine("Used left-right rotation\n\n");
+            this.left.left_rotation();
+            this.right_rotation();
+        }
+
+        private void right_left_rotation()
+        {
+            Console.WriteLine("Used right-left rotation\n\n");
+            this.right.right_rotation();
+            this.left_rotation();
         }
         
     }
