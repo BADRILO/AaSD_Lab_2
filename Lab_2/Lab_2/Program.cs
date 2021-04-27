@@ -6,7 +6,12 @@ namespace Lab_2
     {
         static void Main(string[] args)
         {
-            BBST tree = new BBST(6, 3, 9, 4, 7, 2, 1, 10, 11);
+            TreeNode tree = new TreeNode(15);
+            tree.add(7);
+            tree.add(24);
+            tree.add(20);
+            tree.add(30);
+            tree.add(26);
             tree.printPreorder();
         }
     }
