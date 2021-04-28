@@ -18,7 +18,7 @@ namespace Lab_2
         {
             foreach (int i in data)
             {
-                this.add(i);
+                this.addItem(i);
             }
         }
 
@@ -26,7 +26,7 @@ namespace Lab_2
         {
             return root == null;
         }
-        public void add(int data)
+        public void addItem(int data)
         {
             if (this.IsEmpty())
             {
@@ -39,12 +39,26 @@ namespace Lab_2
             }
         }
 
+        public void deleteItem(int data)
+        {
+            if (this.IsEmpty())
+            {
+                Console.WriteLine("Tree is empty\n\n");
+            }
+            else
+            {
+                root.delete(data);
+            }
+        }
         public void printPreorder()
         {
             if (this.IsEmpty())
                 Console.WriteLine("Tree empty.\n\n");
             else
+            {
                 root.printPreorder();
+                Console.WriteLine("\n"); 
+            }
         }
     }
 }
