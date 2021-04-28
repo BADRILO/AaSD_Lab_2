@@ -40,6 +40,11 @@ namespace Lab_2
             return true;
         }
 
+        public int size()
+        {
+            return TreeNode.size(root);
+        }
+
         public void addItem(int data)
         {
             if (this.IsEmpty())

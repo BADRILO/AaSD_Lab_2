@@ -85,6 +85,13 @@ namespace Lab_2
             }
         }
 
+        static public int size(TreeNode node)
+        {
+            if (node == null)
+                return 0;
+
+            return size(node.left) + size(node.right) + 1;
+        }
         public int add(int data) //добавление нового узла
         {
             if (data < this.data) //входим в левое поддерево

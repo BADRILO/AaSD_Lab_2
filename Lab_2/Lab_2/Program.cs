@@ -22,6 +22,7 @@ namespace Lab_2
             tree.printPreorder();
             tree.printInorder();
             tree.printPostorder();
+            Console.WriteLine(tree.size());
         }
     }
 }
