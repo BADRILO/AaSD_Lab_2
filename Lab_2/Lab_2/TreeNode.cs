@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_2
 {
-    class TreeNode
+    internal class TreeNode
     {
         public int data;
         public TreeNode left;
@@ -19,6 +19,16 @@ namespace Lab_2
             this.data = data;
             this.left = null;
             this.right = null;
+        }
+
+        public void printPreorder()
+        {
+            if (this == null)
+                return;
+
+            Console.WriteLine(this.data);
+            this.left?.printPreorder();
+            this.right?.printPreorder();
         }
 
         public int? search(int data) //возвращает данные если они были найдены
@@ -67,7 +77,6 @@ namespace Lab_2
                 else  //движемся рекурсивно дальше по дереву
                 {
                     int left_H  = this.left.add(data); 
-
                     return this.checkBalance(l_H: left_H);
                 }
             }
@@ -81,7 +90,6 @@ namespace Lab_2
                 else  //движемся рекурсивно дальше по дереву
                 {
                     int right_H = this.right.add(data);
-
                     return this.checkBalance(r_H: right_H);
                 }
             }
@@ -124,7 +132,7 @@ namespace Lab_2
                                 if (node.left.left == null) 
                                 {
                                     this.left.data = node.left.data;
-                                    node.left = null;
+                                    node.delete_rec(node.left.data);
 
                                     return node.checkBalance();
                                 }
@@ -186,7 +194,7 @@ namespace Lab_2
                                 if (node.left.left == null)
                                 {
                                     this.right.data = node.left.data;
-                                    node.left = null;
+                                    node.delete_rec(node.left.data);
 
                                     return node.checkBalance();
                                 }
@@ -227,7 +235,7 @@ namespace Lab_2
             }
         }
 
-        public int getHeight(TreeNode node)
+        static int getHeight(TreeNode node)
         {
             if (node == null)
             {
@@ -242,17 +250,7 @@ namespace Lab_2
             }
         }
 
-        public void printPreorder()
-        {
-            if (this == null)
-                return;
-
-            Console.WriteLine(this.data);
-            this.left?.printPreorder();
-            this.right?.printPreorder();
-        }
-
-        private int checkBalance(int l_H = -1, int r_H = -1)
+        public int checkBalance(int l_H = -1, int r_H = -1)
         {
             int left_H  = l_H == -1 ? getHeight(this.left)  : l_H;
             int right_H = r_H == -1 ? getHeight(this.right) : r_H;

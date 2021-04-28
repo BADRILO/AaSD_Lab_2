@@ -14,6 +14,12 @@ namespace Lab_2
 
             tree.deleteItem(14);
             tree.printPreorder();
+
+            tree.deleteItem(9);
+            tree.printPreorder();
+
+            tree.deleteItem(10);
+            tree.printPreorder();
         }
     }
 }

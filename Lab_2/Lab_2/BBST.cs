@@ -26,6 +26,7 @@ namespace Lab_2
         {
             return root == null;
         }
+
         public void addItem(int data)
         {
             if (this.IsEmpty())
@@ -45,15 +46,60 @@ namespace Lab_2
             {
                 Console.WriteLine("Tree is empty\n\n");
             }
+            else if (root.data == data)
+            {
+                if (root.left == null && root.right == null)
+                {
+                    root = null;
+                }
+                else if (root.left != null && root.right != null)
+                {
+                    if (root.right.left == null)
+                    {
+                        root.data = root.right.data;
+                        root.right = root.right.right;
+                    }
+                    else
+                    {
+                        int findLeftmost(TreeNode node)
+                        {
+                            //нашли крайний левый узел
+                            if (node.left.left == null)
+                            {
+                                root.data = node.left.data;
+                                node.delete(node.left.data);
+
+                                return node.checkBalance();
+                            }
+
+                            return node.checkBalance(l_H: findLeftmost(node.left));
+                        }
+                        findLeftmost(root.right);
+                    }
+                    root.checkBalance();
+                }
+                else
+                {
+                    if (root.left != null)
+                    {
+                        root = root.left;
+                    }
+                    else
+                    {
+                        root = root.right;
+                    }
+                }
+            }
             else
             {
                 root.delete(data);
             }
         }
+
         public void printPreorder()
         {
             if (this.IsEmpty())
-                Console.WriteLine("Tree empty.\n\n");
+                Console.WriteLine("Tree is empty.\n\n");
             else
             {
                 root.printPreorder();
