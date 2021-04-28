@@ -20,6 +20,7 @@ namespace Lab_2
 
             tree.deleteItem(10);
             tree.printPreorder();
+            tree.printInorder();
         }
     }
 }

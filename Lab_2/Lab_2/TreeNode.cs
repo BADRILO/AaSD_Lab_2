@@ -31,6 +31,16 @@ namespace Lab_2
             this.right?.printPreorder();
         }
 
+        public void printInorder()
+        {
+            if (this == null)
+                return;
+
+            this.left?.printInorder();
+            Console.WriteLine(this.data);
+            this.right?.printInorder();
+        }
+
         public int? search(int data) //возвращает данные если они были найдены
         {
             if (data < this.data)
