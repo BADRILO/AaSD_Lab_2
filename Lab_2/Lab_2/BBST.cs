@@ -27,6 +27,19 @@ namespace Lab_2
             return root == null;
         }
 
+        public bool search(int data)
+        {
+            if (root.data == data)
+            {
+                return true;
+            }
+            else if (root.search(data) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void addItem(int data)
         {
             if (this.IsEmpty())
