@@ -117,5 +117,16 @@ namespace Lab_2
                 Console.WriteLine("\n");
             }
         }
+
+        public void printPostorder()
+        {
+            if (this.IsEmpty())
+                Console.WriteLine("Tree is empty.\n\n");
+            else
+            {
+                root.printPostorder();
+                Console.WriteLine("\n");
+            }
+        }
     }
 }

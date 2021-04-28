@@ -41,6 +41,16 @@ namespace Lab_2
             this.right?.printInorder();
         }
 
+        public void printPostorder()
+        {
+            if (this == null)
+                return;
+
+            this.left?.printPostorder();
+            this.right?.printPostorder();
+            Console.WriteLine(this.data);
+        }
+
         public int? search(int data) //возвращает данные если они были найдены
         {
             if (data < this.data)
