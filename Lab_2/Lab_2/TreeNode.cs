@@ -23,9 +23,6 @@ namespace Lab_2
 
         public void printPreorder()
         {
-            if (this == null)
-                return;
-
             Console.WriteLine(this.data);
             this.left?.printPreorder();
             this.right?.printPreorder();
@@ -33,9 +30,6 @@ namespace Lab_2
 
         public void printInorder()
         {
-            if (this == null)
-                return;
-
             this.left?.printInorder();
             Console.WriteLine(this.data);
             this.right?.printInorder();
@@ -43,9 +37,6 @@ namespace Lab_2
 
         public void printPostorder()
         {
-            if (this == null)
-                return;
-
             this.left?.printPostorder();
             this.right?.printPostorder();
             Console.WriteLine(this.data);
@@ -92,6 +83,7 @@ namespace Lab_2
 
             return size(node.left) + size(node.right) + 1;
         }
+
         public int add(int data) //добавление нового узла
         {
             if (data < this.data) //входим в левое поддерево
@@ -99,7 +91,7 @@ namespace Lab_2
                 if (this.left == null) //добавление нового узла как листочка
                 {
                     this.left = new TreeNode(data);
-                    return getHeight(this);
+                    return this.checkBalance();
                 }
                 else  //движемся рекурсивно дальше по дереву
                 {
@@ -112,7 +104,7 @@ namespace Lab_2
                 if (this.right == null)  //добавление нового узла как листочка
                 {
                     this.right = new TreeNode(data);
-                    return getHeight(this);
+                    return this.checkBalance();
                 }
                 else  //движемся рекурсивно дальше по дереву
                 {
@@ -122,15 +114,23 @@ namespace Lab_2
             }
         }
 
-        public void delete(int data) 
+        public void deleteDuplicates()
+        {
+            while(this.delete(this.data) != null) { }
+            this.left?.deleteDuplicates();
+            this.right?.deleteDuplicates();
+        }
+
+        public int? delete(int data) 
         {
             if (this.search(data) == null)
             {
-                Console.WriteLine("Item not exist\n\n");
+                return null;
             }
             else
             {
                 this.delete_rec(data);
+                return data;
             }
         }
 

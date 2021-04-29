@@ -114,6 +114,11 @@ namespace Lab_2
             }
         }
 
+        public void deleteDuplicates()
+        {
+            root.deleteDuplicates();
+        }
+
         public void printPreorder()
         {
             if (this.IsEmpty())
